@@ -2,14 +2,17 @@
 This acts as the view in a MVC pattern and is responsible for all user interaction.
 For game logic, see the FBullCowGame class.
 */
+#pragma once
 
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
+// to make syntax Unreal-friendly
 using FText = std::string;
 using int32 = int;
 
+// function prototypes as outside a class
 void PrintIntro();
 void PlayGame();
 void GetHiddenWord();
@@ -17,7 +20,8 @@ FText GetValidGuess();
 bool AskToPlayAgain();
 void PrintGameSummary();
 
-FBullCowGame BCGame; // instantiate a new game
+// instantiate a new game which we re-use across plays
+FBullCowGame BCGame; 
 
 // entry point
 int main() 
@@ -33,24 +37,22 @@ int main()
 	}
 	while (bPlayAgain);
 	
-	return 0;
+	return 0; // exit app
 }
 
-// introduce the game
 void PrintIntro() 
 {
 	std::cout << "\n\nWelcome to Bulls and Cows, a fun word game.\n";
-	//std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
-	//std::cout << " letter isogram I'm thinking of?\n";
 	std::cout << std::endl;
 	return;
 }
 
+// plays a single game to completion
 void PlayGame()
 {
 	BCGame.Reset();
 
-	// ask player for word length
+	// get word based on player selection
 	GetHiddenWord();
 
 	int32 MaxTries = BCGame.GetMaxTries();
@@ -72,6 +74,7 @@ void PlayGame()
 	return;
 }
 
+// as the player to select a difficulty level and get the hidden word
 void GetHiddenWord()
 {
 	int32 Length;

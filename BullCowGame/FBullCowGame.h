@@ -1,6 +1,12 @@
+/*
+ * The game logic (no view code or direct user interaction).
+ * The game is a simple guess the word game based on Mastermind.
+ */
 #pragma once
+
 #include <string>
 
+// To make syntax Unreal-friendly
 using FString = std::string;
 using int32 = int;
 
@@ -39,7 +45,7 @@ public:
 
 // compile-time values
 private:
-	// see constructor for initialization
+	// see constructor for initialization values
 	int32 MyCurrentTry;
 	FString MyHiddenWord;
 	bool bWonGame;
