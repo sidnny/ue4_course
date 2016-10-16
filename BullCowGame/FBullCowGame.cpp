@@ -1,5 +1,4 @@
 #include "FBullCowGame.h"
-#include <iostream>
 #include <map>
 #include <locale>
 #define TMap std::map
@@ -9,6 +8,20 @@ using int32 = int;
 FBullCowGame::FBullCowGame() { Reset(); }
 
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
+
+void FBullCowGame::SetHiddenWord(int32 Length)
+{
+	TMap<int32, FString> Words{
+		{ 3, "nut" },
+		{ 4, "cone" },
+		{ 5, "house" },
+		{ 6, "planet" },
+		{ 7, "anymore" }
+	};
+	MyHiddenWord = Words[Length];
+	//return Words[Length];
+}
+
 int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 bool FBullCowGame::HasWonGame() const { return bWonGame; }
 
@@ -18,24 +31,12 @@ int32 FBullCowGame::GetMaxTries() const
 	return WordLengthMaxTries[MyHiddenWord.length()];
 }
 
-//FString FBullCowGame::GetHiddenWord() const
-//{
-//	TMap<int32, FString> Words{
-//		{ 3, "nut" },
-//		{ 4, "cone" },
-//		{ 5, "house" },
-//		{ 6, "planet" },
-//		{ 7, "anymore" }
-//	};
-//	return Words[HiddenWordLength];
-//}
-
 void FBullCowGame::Reset()
 {
-	const FString HIDDEN_WORD = "planet";
+	//const FString HIDDEN_WORD = "planet";
 
 	MyCurrentTry = 1;
-	MyHiddenWord = HIDDEN_WORD;
+	//MyHiddenWord = HIDDEN_WORD;
 	bWonGame = false;
 
 	return;

@@ -12,6 +12,7 @@ using int32 = int;
 
 void PrintIntro();
 void PlayGame();
+void GetHiddenWord();
 FText GetValidGuess();
 bool AskToPlayAgain();
 void PrintGameSummary();
@@ -39,8 +40,8 @@ int main()
 void PrintIntro() 
 {
 	std::cout << "\n\nWelcome to Bulls and Cows, a fun word game.\n";
-	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
-	std::cout << " letter isogram I'm thinking of?\n";
+	//std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
+	//std::cout << " letter isogram I'm thinking of?\n";
 	std::cout << std::endl;
 	return;
 }
@@ -48,6 +49,9 @@ void PrintIntro()
 void PlayGame()
 {
 	BCGame.Reset();
+
+	// ask player for word length
+	GetHiddenWord();
 
 	int32 MaxTries = BCGame.GetMaxTries();
 
@@ -66,6 +70,20 @@ void PlayGame()
 	// print game summary
 	PrintGameSummary();
 	return;
+}
+
+void GetHiddenWord()
+{
+	int32 Length;
+	FString derp;
+
+	std::cout << "Select a word length to play [3-7]: ";
+	std::getline(std::cin, derp);
+	std::cout << std::endl;
+
+	Length = std::stoi(derp);
+
+	BCGame.SetHiddenWord(Length);
 }
 
 // loop conitunously until the user gives a valid guess
