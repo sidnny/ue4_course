@@ -23,7 +23,9 @@ void UPositionReport::BeginPlay()
 
 	// method returns a pointer to an actor so need to use -> instead of .
 	FString ObjectName = GetOwner()->GetName();
-	UE_LOG(LogTemp, Warning, TEXT("Position report reporting for duty on %s."), *ObjectName);
+	//FString ObjectPos = GetOwner()->GetActorLocation().ToString();
+	FString ObjectPos = GetOwner()->GetTransform().GetLocation().ToString();
+	UE_LOG(LogTemp, Warning, TEXT("Object %s is at %s."), *ObjectName, *ObjectPos);
 	
 }
 
