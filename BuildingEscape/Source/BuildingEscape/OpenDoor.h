@@ -21,6 +21,12 @@ public:
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
-		
+private:
+	//create a property macro that is visible in details tab (see UE4 docs)
+	UPROPERTY(VisibleAnywhere)
+	float OpenAngle = 90.0f;
 	
+	// allows you to assign a trigger volume in the editor
+	UPROPERTY(EditAnywhere)
+	ATriggerVolume* PressurePlate;
 };
